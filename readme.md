@@ -1,7 +1,7 @@
 # Cluster
 
-Calico https://docs.tigera.io/calico/latest/about/
-Crio https://cri-o.io/
+- Calico https://docs.tigera.io/calico/latest/about/
+- Crio https://cri-o.io/
 
 Flow of text processing
 
@@ -37,3 +37,8 @@ Shutdown:
 Remove:
 
     vagrant destroy -f
+
+
+Links:
+ - https://github.com/techiescamp/vagrant-kubeadm-kubernetes/
+ - https://github.com/techiescamp/kubernetes-learning-path
