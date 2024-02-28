@@ -38,6 +38,32 @@ Remove:
 
     vagrant destroy -f
 
+### Log to machines
+
+    vagrant status
+    vagrant ssh {node}
+
+
+### Change user from vagrant to root
+    
+    sudo su
+
+### Change root pass
+
+    sudo -i
+    passwd
+
+
+    /etc/ssh/sshd_config
+    PermitRootLogin yes
+
+
+### Login as root
+    
+    Vagrantfile
+    config.ssh.username = 'root'
+    config.ssh.password = 'vagrant'
+    config.ssh.insert_key = 'true'
 
 Links:
  - https://github.com/techiescamp/vagrant-kubeadm-kubernetes/
