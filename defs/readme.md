@@ -34,9 +34,25 @@ Verify connection
 `netstat -plant | grep kubectl`
 
 Selectors & Lables
-    - `k get pods --show-labels`
-    - `k get pods --selector tier=prod`
-    - `k get pods --selector tier!=prod`
-    - `k get pods -l 'tier in (prod,qa)'`
-    - `k get pods -l 'tier in (prod,qa)' --show-labels`
-    - `k get pods -n kube-system -L controller-revision-hash` - show label as column
+  - `k get pods --show-labels`
+  - `k get pods --selector tier=prod`
+  - `k get pods --selector tier!=prod`
+  - `k get pods -l 'tier in (prod,qa)'`
+  - `k get pods -l 'tier in (prod,qa)' --show-labels`
+  - `k get pods -n kube-system -L controller-revision-hash` - show label as column
+
+Deployments:
+  - `kubectl create deployment hello-world --image=nginx:1.24.0-alpine-slim`
+  - `kubectl set image deployment hello-world --image=nginx:1.25.4-alpine-slim --record`
+  - `k rollout status deployment hello-world`
+  - `k scale deployment hello-world --replcias=3`
+  - `k rollout pause deployment {dep-name}`
+  - `k rollout resume deployment {dep-name}`
+  - `k rollout history deployment hello-world`
+  - `k rollout history deployment hello-world --revision=1`
+  - `k rollout undo deployment hello-world`
+  - `k rollout undo deployment hello-world --to-revision=1`
+  - `k rollout restart deployment hello-world`
+  
+Events:
+ - `k get events --sort-by='.lastTimestamp'`

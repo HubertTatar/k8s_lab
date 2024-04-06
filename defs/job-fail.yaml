@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-fail
+spec:
+  template:
+    spec:
+      containers:
+      - name: alpine-job
+        image: alpine:3.14
+        command:
+         - "/bin/sh"
+         - "-c"
+         - "/bin/ech Hello world from Pod $(hostname) at $(date)"
+      restartPolicy: Never
+  backoffLimit: 2
