@@ -1,6 +1,6 @@
 https://kubernetes.io/docs/reference/kubernetes-api/
 
-- ` k create deployment nginx --image=nginx --dry-run=client -o yaml` - print sintacticaly correct template
+- `k create deployment nginx --image=nginx --dry-run=client -o yaml` - print sintacticaly correct template
 - `k api-resources` - list of resources
 - `k explain deployment|pod|etc`       - explain given part of yaml
 - `k explain flowschemas --api-version=flowcontrol.apiserver.k8s.io/v1beta3|k explain flowschemas --api-version=flowcontrol.apiserver.k8s.io/v1beta2` specific api version
@@ -40,6 +40,7 @@ Selectors & Lables
   - `k get pods -l 'tier in (prod,qa)'`
   - `k get pods -l 'tier in (prod,qa)' --show-labels`
   - `k get pods -n kube-system -L controller-revision-hash` - show label as column
+  - `k logs --selector 'k8s-app=kubedns' --follow`
 
 Deployments:
   - `kubectl create deployment hello-world --image=nginx:1.24.0-alpine-slim`
@@ -56,3 +57,23 @@ Deployments:
   
 Events:
  - `k get events --sort-by='.lastTimestamp'`
+
+Secrets:
+  - `kubectl get secret db-user-pass -o json | jq '.data | map_values(@base64d)'`
+  - `kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D`
+
+Admin:
+  - `kubectl cordon node`
+  - `kubectl drain node --ignore-daemosets`
+
+Tips:
+  - find dns name for service
+    `kubectl get service -n kube-system | grep {dns}`
+    `kubectl get service -n powerflex | grep {service}`
+    `nslookup {service-ip} {dns-ip}`
+
+  - network ss
+    `ss -l` - list sockets
+    `ss -t -a` - -t, the -u, or the -x options alone will only list out those connections that are established, -a connections that are listening
+    `ss -4 state listening` - filter by state
+    `ss dst 192.168.1.139` - connections to specific address

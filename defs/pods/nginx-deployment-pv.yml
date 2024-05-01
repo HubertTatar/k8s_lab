@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-pv
+  name: nginx-pv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-pv
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-pv
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - name: webcontent
+          mountPath: "/usr/share/nginx/html/web-app"
+      volumes:
+      - name: webcontent
+        persistentVolumeClaim:
+          claimName: "mypv"   
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-pv
+spec:
+  selector:
+    app: nginx-pv
+  ports:
+  - port: 80
+    protocol: TCP
+#master
+#sudo apt install nfs-kernel-server
+#sudo mkdir -p /export/volumes/pod
+#sudo bash -c 'echo "Hello from NFS mount!" > /export/volumes/pod/demo.html'
+#sudo systemctl restart nfs-kernel-server.service
+#nodes test if working
+#sudo apt install nfs-common
+#sudo mount -t nfs4 10.0.0.10:/export/volumes /mnt/
+#mount | grep nfs
+#test from one inside cluster 
+#curl http://172.17.33.83:80/web-app/demo.html
