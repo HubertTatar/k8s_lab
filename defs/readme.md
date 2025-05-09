@@ -79,3 +79,6 @@ Tips:
     `ss -t -a` - -t, the -u, or the -x options alone will only list out those connections that are established, -a connections that are listening
     `ss -4 state listening` - filter by state
     `ss dst 192.168.1.139` - connections to specific address
+
+  - ssl
+    `openssl s_client -connect host:port`    
