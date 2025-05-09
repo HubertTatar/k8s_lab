@@ -1,6 +1,8 @@
 https://kubernetes.io/docs/reference/kubernetes-api/
 
-- `k create deployment nginx --image=nginx --dry-run=client -o yaml` - print sintacticaly correct template
+- `k create deployment nginx --image=nginx --dry-run=client -o yaml`               - print sintacticaly correct template
+- `k create deployment nxses --image=nginx --replicas=2 --dry-run=client -o yaml`  - print sintacticaly correct template
+- `k run nginx --image=nginx --dry-run=client -o yaml`                             - print sintacticaly correct pod template
 - `k api-resources` - list of resources
 - `k explain deployment|pod|etc`       - explain given part of yaml
 - `k explain flowschemas --api-version=flowcontrol.apiserver.k8s.io/v1beta3|k explain flowschemas --api-version=flowcontrol.apiserver.k8s.io/v1beta2` specific api version

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: initc
+  name: initc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: initc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: initc
+    spec:
+      containers:
+      - image: busybox:1.28
+        name: busybox
+        command: ['sh', '-c', 'sleep 3600']  
+        resources: {}
+      initContainers:
+      - image: busybox:1.28
+        name: init-sth
+        command: ['sh', '-c', 'sleep 10']  
+status: {}

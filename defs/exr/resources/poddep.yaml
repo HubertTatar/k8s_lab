@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: poddep
+    a: b  
+  name: poddep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: poddep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: poddep
+        a: b 
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        envFrom:  
+          - secretRef:
+              name: sec2
+        env:
+         - name: psecret
+           valueFrom:  
+             secretKeyRef:
+               name: psecret
+               key: somecfg   
+        resources:
+          limits:
+            cpu: 0.2
+            memory: 100Mi
+          requests:
+            cpu: 0.2
+            memory: 100Mi  
+status: {}

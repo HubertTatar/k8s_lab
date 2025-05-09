@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nxses
+  name: nxses
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nxses
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nxses
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+      - image: busybox
+        name: sidecar   
+status: {}

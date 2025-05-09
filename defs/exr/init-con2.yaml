@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: initc
+  name: initc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: initc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: initc
+    spec:
+      containers:
+      - image: busybox:1.28
+        name: busybox
+        command: ['sh', '-c', 'cat /work/word.txt && sleep 3600']  
+        resources: {}
+        volumeMounts:
+        - name: work-dir
+          mountPath: /work
+      initContainers:
+      - image: busybox:1.28
+        name: init-sth
+        command: ['ls /work']
+        volumeMounts:
+        - name: work-dir
+          mountPath: /work
+      volumes: 
+      - name: work-dir
+        emptyDir: {}  
+status: {}

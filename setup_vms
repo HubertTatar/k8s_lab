@@ -1,0 +1,16 @@
+
+https://www.virtualbox.org/wiki/Downloads
+https://developer.hashicorp.com/vagrant/install
+
+vagrant up
+vagrant status
+vagrant halt
+vagrant destroy
+
+
+cd -
+!!
+esc+.
+ctrl+r
+ctrl+a
+ctrl+e
